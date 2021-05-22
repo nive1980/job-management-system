@@ -1,0 +1,48 @@
+{
+  "properties": [
+    {
+      "name": "bank.config.id",
+      "type": "java.lang.String",
+      "description": "Description for bank.config.id."
+    },
+    {
+      "name": "recurring.task.rm.required",
+      "type": "java.lang.String",
+      "description": "Description for recurring.task.rm.required."
+    },
+    {
+      "name": "recurring.task.processed.rm-txn",
+      "type": "java.lang.String",
+      "description": "Description for recurring.task.processed.rm-txn."
+    },
+    {
+      "name": "recurring.task.no.retries",
+      "type": "java.lang.String",
+      "description": "Description for recurring.task.no.retries."
+    },
+    {
+      "name": "recurring.task.previous.days",
+      "type": "java.lang.String",
+      "description": "Description for recurring.task.previous.days."
+    },
+    {
+      "name": "recurring.task.cron.expression",
+      "type": "java.lang.String",
+      "description": "Description for recurring.task.cron.expression."
+    },
+    {
+      "name": "obs.url",
+      "type": "java.lang.String",
+      "description": "Description for obs.url."
+    },
+    {
+      "name": "obs.username",
+      "type": "java.lang.String",
+      "description": "Description for obs.username."
+    },
+    {
+      "name": "obs.password",
+      "type": "java.lang.String",
+      "description": "Description for obs.password."
+    }
+  ] }
