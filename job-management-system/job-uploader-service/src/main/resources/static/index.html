@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+        <title>Job Management System-Upload Service</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+                <link rel="stylesheet" href="/css/main.css" />
+	    <script type = "text/javascript">
+            function tableCreate()
+	        {
+                var tableDiv=document.getElementById('table-id');
+                var tbl=document.createElement('table');
+                tbl.setAttribute("class", "table");
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", "http://localhost:8080/getJobDetails");
+                xhr.send();
+                xhr.onload = function() {
+                    var response = JSON.parse(xhr.responseText);
+                    if(xhr.status == 200) {
+                     jdError.style.display = "none";
+                     var parsedJSON = JSON.parse(xhr.response);
+                     var tbody = tbl.createTBody();
+                     for (var i = 0; i < parsedJSON.length; i++) {
+                        var dataRow = tbody.insertRow(i);
+                        var dataCell = dataRow.insertCell(0);
+                        var text = document.createTextNode(parsedJSON[i].name);
+                        dataCell.appendChild(text);
+                        dataCell = dataRow.insertCell(1);
+                        text = document.createTextNode(parsedJSON[i].type);
+                        dataCell.appendChild(text);
+                        dataCell = dataRow.insertCell(2);
+                        text = document.createTextNode(parsedJSON[i].priority);
+                        dataCell.appendChild(text);
+                        dataCell = dataRow.insertCell(3);
+                        text = document.createTextNode(parsedJSON[i].status);
+                        dataCell.appendChild(text);
+                        dataCell = dataRow.insertCell(4);
+                        text = document.createTextNode(parsedJSON[i].executeImmediate);
+                        dataCell.appendChild(text);
+                        dataCell = dataRow.insertCell(5);
+                        text = document.createTextNode(parsedJSON[i].executionDate);
+                        dataCell.appendChild(text);
+                     }
+                }
+                else {
+                    jdSuccess.style.display = "none";
+                    jdError.innerHTML = (xhr.response && xhr.response.message) || "Some Error Occurred";
+                }
+            }
+            var header = tbl.createTHead();
+            var row = header.insertRow(0);
+            var cell = row.insertCell(0);
+            cell.innerHTML = "<b>Name&nbsp;&nbsp;</b>";
+            cell = row.insertCell(1);
+            cell.innerHTML = "<b>Type&nbsp;&nbsp;</b>";
+            cell = row.insertCell(2);
+            cell.innerHTML = "<b>Priority&nbsp;&nbsp;</b>";
+            cell = row.insertCell(3);
+            cell.innerHTML = "<b>Status&nbsp;&nbsp;</b>";
+            cell = row.insertCell(4);
+            cell.innerHTML = "<b>Execute Immediate&nbsp;&nbsp;</b>";
+            cell = row.insertCell(5);
+            cell.innerHTML = "<b>Execute Date&nbsp;&nbsp;</b>";
+            tableDiv.appendChild(tbl);
+	    }
+    </script>
+    </head>
+    <body>
+        <noscript>
+            <h2>Sorry! Your browser doesn't support Javascript</h2>
+        </noscript>
+        <div class="container">
+            <div class="upload-container">
+                <ul class="nav nav-tabs">
+		            <li class="active"><a data-toggle="tab" href="#home">Upload Job Details</a></li>
+		            <li><a data-toggle="tab" onClick ="tableCreate()" href="#menu1">View Job Details List</a></li>
+                </ul>
+                <div class="upload-header">
+                    <h2>Job Management System-Upload Service</h2>
+                </div>
+                <div class="tab-content">
+                    <div id="home" class="tab-pane fade in active upload-content">
+                        <div class="single-upload">
+                            <h3>Upload CSV File of jobs</h3>
+                            <form id="singleUploadForm" name="singleUploadForm">
+                                <input id="singleFileUploadInput" type="file" name="file" class="file-input" required />
+                                <button type="submit" class="primary submit-btn">Submit</button>
+                            </form>
+                            <div class="upload-response">
+                                <div id="singleFileUploadError"></div>
+                                <div id="singleFileUploadSuccess"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="menu1" class="tab-pane fade">
+                        <div id="table-id" class="single-upload">
+                        <h3>Job Details</h3>
+                        <div id="jdSuccess"></div>
+                            <div id="jdError"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/js/main.js" ></script>
+
+
+    </body>
+</html>
