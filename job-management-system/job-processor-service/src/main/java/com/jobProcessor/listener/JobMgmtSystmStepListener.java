@@ -32,6 +32,6 @@ public class JobMgmtSystmStepListener implements StepExecutionListener {
                 throw new UnexpectedJobExecutionException("Could not delete file " + file.getPath());
             }
         }
-        return null;
+        return ExitStatus.COMPLETED;
     }
 }

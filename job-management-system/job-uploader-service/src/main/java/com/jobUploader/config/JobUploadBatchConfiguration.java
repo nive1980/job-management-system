@@ -73,7 +73,6 @@ public class JobUploadBatchConfiguration {
      */
     @Bean
     @StepScope
-    @Primary
     public FlatFileItemReader<JobDetail> jobDetailItemReader(@Value("#{jobParameters['fileName']}") String filename) throws MalformedURLException {
         return new FlatFileItemReaderBuilder<JobDetail>()
                 .name(Constants.ITEM_READER)

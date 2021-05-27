@@ -22,6 +22,6 @@ public class JobMgmtSystmJobStepExecutionListener implements StepExecutionListen
     @Override
     public ExitStatus afterStep(StepExecution stepExecution) {
         logger.info("SimpleJobStepExecutionListener  ---- after  ");
-        return null;
+        return ExitStatus.COMPLETED;
     }
 }
